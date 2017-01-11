@@ -3,7 +3,7 @@ clc;
 
 img = imread('test.tiff');
 
-% imag properties
+% image properties
 h = size(img, 1);
 w = size(img, 2);
 
