@@ -1,7 +1,7 @@
 function [positions, integrated] = integrate(img, x_0, y_0, bins)
     % image resolution
-    w = size(img,1);
-    h = size(img,2);
+    h = size(img,1);
+    w = size(img,2);
     
     x = 0:w - 1;
     y = 0:h - 1;

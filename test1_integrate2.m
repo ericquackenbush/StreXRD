@@ -11,8 +11,8 @@ y_0 = 1138;
 bins = 500;
 
 % image resolution
-w = size(img,1);
-h = size(img,2);
+h = size(img,1);
+w = size(img,2);
 
 x = 0:w - 1;
 y = 0:h - 1;
