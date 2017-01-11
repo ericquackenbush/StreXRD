@@ -20,20 +20,9 @@ x = x - w/2;
 y = h/2 - y;
 data = [x(:), y(:)];
 
-% % find best ellipse
-% [x_0, y_0, a, b, phi] = ransac_ellipse2(data, 200, 10, 0.25);
+% find best ellipse
+[x_0, y_0, a, b, phi] = ransac_ellipse(data, 200, 10, 0.25);
 
-% % plot ellipse
-% N = 1000;
-% theta = 0:2*pi/N:2*pi;
-% xAxis = x_0 + a*cos(theta)*cos(phi) - b*sin(theta)*sin(phi);
-% yAxis = y_0 + b*cos(theta)*sin(phi) + b*sin(theta)*cos(phi);
-% scatter(x, y); hold on;
-% plot(xAxis,yAxis,'r-','LineWidth',2);
-
-% center
-x_0 = 534;
-y_0 = 1137;
 
 bestPeakFound = 0;
 
@@ -49,8 +38,6 @@ while (bestPeakFound == 0)
         % do azimuthal integration
         [R, I] = integrate(img, pts(n, 1), pts(n, 2), 500);
 
-        % plot(R,I);
-
         % calculate sliding average
         e = movmean(I,3);
 
@@ -62,14 +49,10 @@ while (bestPeakFound == 0)
             end
         end
 
-        % plot(R, I); hold on;
-        % plot(R,e);
-
         % may want to consider both height and width of peaks
         [pks, locs] = findpeaks(e,R);
 
         maxPeak(n) = max(pks);
-        
     end
     
     [best, ind] = max(maxPeak);
