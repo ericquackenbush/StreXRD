@@ -1,4 +1,4 @@
-unction  [bestParameter1,bestParameter2, bestParameter3, bestParameter4, bestParameter5] = ransac_ellipse(data,iter,threshDist, inlierRatio)
+function  [bestParameter1,bestParameter2, bestParameter3, bestParameter4, bestParameter5] = ransac_ellipse(data,iter,threshDist, inlierRatio)
 
 % data: a N x 2 dataset with N data points
 % num: the minimum number of points
@@ -36,7 +36,7 @@ for i=1:iter
     %% Compute the distances between all points and the ellipse
     distance = zeros(1, number);
     parfor k = 1: number
-        distance(k) = dist_ellipse2(x_0, y_0, a, b, phi, data(k,1), data(k,2));
+        distance(k) = dist_ellipse(x_0, y_0, a, b, phi, data(k,1), data(k,2));
     end
     
     %% Compute the inliers with distances smaller than the threshold
