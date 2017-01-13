@@ -43,7 +43,7 @@ for i=1:iter
     
     inlierIdx = find(abs(distance)<=threshDist);
     inlierNum = length(inlierIdx);
-    
+        
     %% Update the number of inliers and fitting model if better model is found     
     if inlierNum>=round(inlierRatio*number) && inlierNum>bestInNum
         bestInNum = inlierNum;
