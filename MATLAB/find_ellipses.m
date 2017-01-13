@@ -12,15 +12,15 @@ threshold = 0.7;
 BW = im2bw(img, threshold);
 
 % convert to Cartesian coordinates
-[x,y] = find(BW == 1);
-data = [x(:), y(:)];
+h = size(img, 1);
+w = size(img, 2);
+[y,x] = find(BW == 1);
+data = [x(:) - w/2, h/2 - y(:)];
 
-%scatter(data(:,1), data(:,2))
-%imshow(BW);
-
-[X_0, Y_0, A, B, Phi] = sequential(data, 100, 10, 0.25);
+[X_0, Y_0, A, B, Phi] = sequential_ransac(data, 100, 10, 0.25);
 scatter(data(:,1), data(:,2))
 hold on;
+
 %% Plot the best fitting ellipses
 N = 1000;
 theta = 0:2*pi/N:2*pi;
