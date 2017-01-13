@@ -11,20 +11,20 @@ img = medfilt2(img);
 threshold = 0.7;
 BW = im2bw(img, threshold);
 
-% BW = edge(img);
-
 % convert to Cartesian coordinates
+h = size(img, 1);
+w = size(img, 2);
+
 [y,x] = find(BW == 1);
-data = [x(:), -y(:) + length(img)];
+data = [x(:) - w/2, h/2 - y(:)];
 
 scatter(data(:,1), data(:,2))
 hold on;
-%imshow(BW);
 
 a = 565;
 b = a;
-x_c = 531.0276;
-y_c = 909.5;
+x_c = 534 - w/2;
+y_c = h/2 - 1138;
 phi = 0;
 
 N = 1000;

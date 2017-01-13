@@ -10,15 +10,12 @@ x = 0:shape(1) - 1;
 y = 0:shape(2) - 1;
 x = x - x_c;
 y = y - y_c;
-% y = meshgrid(a) + meshgrid(b)' gives outer sum of two vectors a and b
 z = meshgrid(x.*x) + meshgrid(y.*y)';
 r = sqrt(z);
 img = 0;
 for i = 1:length(rings)
     img = img + exp(-(r - rings(i)).^2);   % gaussian profile
 end
-
-%[R, I] = integrate(img, r, 500);
 
 bins = 500;
 
