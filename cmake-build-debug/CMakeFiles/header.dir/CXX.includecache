@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/eric/Archytas/src/io/header.cpp
+stdio.h
+-
+algorithm
+-
+ctype.h
+-
+vector
+-
+iostream
+-
+string
+-
+fstream
+-
+boost/algorithm/string.hpp
+-
+
