@@ -1,3 +1,3 @@
 # Archytas
 
-This is the rizzle dizzle. Just want y'all to know.
+An open-source data analysis tool for 2D powder diffraction data.
