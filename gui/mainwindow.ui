@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>809</width>
+    <height>496</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>StreXRD</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QSplitter" name="splitter">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>322</height>
+       </size>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QTreeWidget" name="treeWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>250</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <column>
+        <property name="text">
+         <string>Project Explorer</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>Tab 1</string>
+        </attribute>
+       </widget>
+       <widget class="QWidget" name="tab_2">
+        <attribute name="title">
+         <string>Tab 2</string>
+        </attribute>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>809</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionCreate_new_data_set"/>
+    <addaction name="actionOpen_existing_dataset"/>
+    <addaction name="actionAdd_images_to_existing_project"/>
+    <addaction name="actionPreferences"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuCalibration">
+    <property name="title">
+     <string>Calibration</string>
+    </property>
+    <addaction name="actionEnter_calibration_file"/>
+    <addaction name="actionLoad_standard_diffraction_file"/>
+    <addaction name="actionSelect_standard_from_database"/>
+    <addaction name="actionPerform_calibration"/>
+    <addaction name="actionView_calibration_parameters"/>
+   </widget>
+   <widget class="QMenu" name="menuAnalysis">
+    <property name="title">
+     <string>Analysis</string>
+    </property>
+    <addaction name="actionFind_Center"/>
+    <addaction name="actionAzimuthal_Integration"/>
+    <addaction name="actionFit_Circles"/>
+    <addaction name="actionFit_Ellipses"/>
+    <addaction name="actionTake_Slices"/>
+    <addaction name="separator"/>
+    <addaction name="actionMulti_Analysis"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionDocumentation"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuCalibration"/>
+   <addaction name="menuAnalysis"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionOpen_Image"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionCreate_new_data_set">
+   <property name="text">
+    <string>Create new project</string>
+   </property>
+  </action>
+  <action name="actionOpen_existing_dataset">
+   <property name="text">
+    <string>Open existing project</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionEnter_calibration_file">
+   <property name="text">
+    <string>Open calibration file</string>
+   </property>
+  </action>
+  <action name="actionLoad_standard_diffraction_file">
+   <property name="text">
+    <string>Load standard diffraction file</string>
+   </property>
+  </action>
+  <action name="actionSelect_standard_from_database">
+   <property name="text">
+    <string>Select standard from database</string>
+   </property>
+  </action>
+  <action name="actionPerform_calibration">
+   <property name="text">
+    <string>Perform calibration</string>
+   </property>
+  </action>
+  <action name="actionView_calibration_parameters">
+   <property name="text">
+    <string>View calibration parameters</string>
+   </property>
+  </action>
+  <action name="actionFind_Center">
+   <property name="text">
+    <string>Find Center</string>
+   </property>
+  </action>
+  <action name="actionAzimuthal_Integration">
+   <property name="text">
+    <string>Azimuthal Integration</string>
+   </property>
+  </action>
+  <action name="actionFit_Circles">
+   <property name="text">
+    <string>Fit Circles</string>
+   </property>
+  </action>
+  <action name="actionFit_Ellipses">
+   <property name="text">
+    <string>Fit Ellipses</string>
+   </property>
+  </action>
+  <action name="actionTake_Slices">
+   <property name="text">
+    <string>Take Slices</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionMulti_Analysis">
+   <property name="text">
+    <string>Multi-Analysis</string>
+   </property>
+  </action>
+  <action name="actionOpen_Image">
+   <property name="text">
+    <string>Open Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Open Image</string>
+   </property>
+  </action>
+  <action name="actionAdd_images_to_existing_project">
+   <property name="text">
+    <string>Add images to existing project</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

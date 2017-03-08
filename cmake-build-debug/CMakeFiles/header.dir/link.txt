@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/header.dir/src/io/header.cpp.o  -o ../bin/header -rdynamic 
