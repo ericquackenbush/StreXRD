@@ -12,5 +12,3 @@ newproject::~newproject()
 {
     delete ui;
 }
-
-// test
