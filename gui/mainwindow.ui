@@ -69,8 +69,23 @@
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
-         <string>Tab 1</string>
+         <string>Main</string>
         </attribute>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QSplitter" name="splitter_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <widget class="QGraphicsView" name="graphicsView"/>
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>View Options</string>
+            </property>
+           </widget>
+          </widget>
+         </item>
+        </layout>
        </widget>
        <widget class="QWidget" name="tab_2">
         <attribute name="title">
@@ -88,7 +103,7 @@
      <x>0</x>
      <y>0</y>
      <width>809</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -99,6 +114,7 @@
     <addaction name="actionOpen_existing_dataset"/>
     <addaction name="actionAdd_images_to_existing_project"/>
     <addaction name="actionPreferences"/>
+    <addaction name="actionMetal"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -145,6 +161,8 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen_Image"/>
+   <addaction name="actionZoom_In"/>
+   <addaction name="actionZoom_Out"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionCreate_new_data_set">
@@ -233,6 +251,10 @@
    </property>
   </action>
   <action name="actionOpen_Image">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/document-open-5.png</normaloff>:/icons/icons/document-open-5.png</iconset>
+   </property>
    <property name="text">
     <string>Open Image</string>
    </property>
@@ -245,8 +267,42 @@
     <string>Add images to existing project</string>
    </property>
   </action>
+  <action name="actionZoom_In">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/zoom-in-5.png</normaloff>:/icons/icons/zoom-in-5.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="toolTip">
+    <string>Zoom In</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/zoom-out-5.png</normaloff>:/icons/icons/zoom-out-5.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+  </action>
+  <action name="actionMetal">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Metal Mode</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="Resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QFileSystemModel>
+#include <QGraphicsScene>
+#include <QMediaPlayer>
 
 namespace Ui {
 class MainWindow;
@@ -24,8 +26,18 @@ private slots:
 
     void on_actionOpen_Image_triggered();
 
+	void on_actionMetal_triggered();
+
 private:
     Ui::MainWindow *ui;
+
+	// display an image with Graphics View
+	QPixmap image;
+	QImage  *imageObject;
+	QGraphicsScene *scene;
+
+	// play music file
+	QMediaPlayer* player;
 
 };
 

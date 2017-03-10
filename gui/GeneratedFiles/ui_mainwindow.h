@@ -13,6 +13,8 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
@@ -49,12 +51,19 @@ public:
     QAction *actionMulti_Analysis;
     QAction *actionOpen_Image;
     QAction *actionAdd_images_to_existing_project;
+    QAction *actionZoom_In;
+    QAction *actionZoom_Out;
+    QAction *actionMetal;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QSplitter *splitter;
     QTreeWidget *treeWidget;
     QTabWidget *tabWidget;
     QWidget *tab;
+    QHBoxLayout *horizontalLayout_2;
+    QSplitter *splitter_2;
+    QGraphicsView *graphicsView;
+    QGroupBox *groupBox;
     QWidget *tab_2;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -105,8 +114,25 @@ public:
         actionMulti_Analysis->setObjectName(QStringLiteral("actionMulti_Analysis"));
         actionOpen_Image = new QAction(MainWindow);
         actionOpen_Image->setObjectName(QStringLiteral("actionOpen_Image"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/icons/icons/document-open-5.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOpen_Image->setIcon(icon);
         actionAdd_images_to_existing_project = new QAction(MainWindow);
         actionAdd_images_to_existing_project->setObjectName(QStringLiteral("actionAdd_images_to_existing_project"));
+        actionZoom_In = new QAction(MainWindow);
+        actionZoom_In->setObjectName(QStringLiteral("actionZoom_In"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/icons/icons/zoom-in-5.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZoom_In->setIcon(icon1);
+        actionZoom_Out = new QAction(MainWindow);
+        actionZoom_Out->setObjectName(QStringLiteral("actionZoom_Out"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/icons/icons/zoom-out-5.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionZoom_Out->setIcon(icon2);
+        actionMetal = new QAction(MainWindow);
+        actionMetal->setObjectName(QStringLiteral("actionMetal"));
+        actionMetal->setCheckable(false);
+        actionMetal->setChecked(false);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -138,6 +164,22 @@ public:
         tabWidget->setSizePolicy(sizePolicy1);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
+        horizontalLayout_2 = new QHBoxLayout(tab);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
+        splitter_2 = new QSplitter(tab);
+        splitter_2->setObjectName(QStringLiteral("splitter_2"));
+        splitter_2->setOrientation(Qt::Vertical);
+        graphicsView = new QGraphicsView(splitter_2);
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
+        splitter_2->addWidget(graphicsView);
+        groupBox = new QGroupBox(splitter_2);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        splitter_2->addWidget(groupBox);
+
+        horizontalLayout_2->addWidget(splitter_2);
+
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -149,7 +191,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 809, 26));
+        menuBar->setGeometry(QRect(0, 0, 809, 21));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuCalibration = new QMenu(menuBar);
@@ -174,6 +216,7 @@ public:
         menuFile->addAction(actionOpen_existing_dataset);
         menuFile->addAction(actionAdd_images_to_existing_project);
         menuFile->addAction(actionPreferences);
+        menuFile->addAction(actionMetal);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
         menuCalibration->addAction(actionEnter_calibration_file);
@@ -192,6 +235,8 @@ public:
         menuHelp->addSeparator();
         menuHelp->addAction(actionAbout);
         mainToolBar->addAction(actionOpen_Image);
+        mainToolBar->addAction(actionZoom_In);
+        mainToolBar->addAction(actionZoom_Out);
 
         retranslateUi(MainWindow);
 
@@ -226,9 +271,16 @@ public:
         actionOpen_Image->setToolTip(QApplication::translate("MainWindow", "Open Image", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         actionAdd_images_to_existing_project->setText(QApplication::translate("MainWindow", "Add images to existing project", Q_NULLPTR));
+        actionZoom_In->setText(QApplication::translate("MainWindow", "Zoom In", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionZoom_In->setToolTip(QApplication::translate("MainWindow", "Zoom In", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionZoom_Out->setText(QApplication::translate("MainWindow", "Zoom Out", Q_NULLPTR));
+        actionMetal->setText(QApplication::translate("MainWindow", "Metal Mode", Q_NULLPTR));
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Project Explorer", Q_NULLPTR));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Tab 1", Q_NULLPTR));
+        groupBox->setTitle(QApplication::translate("MainWindow", "View Options", Q_NULLPTR));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "Main", Q_NULLPTR));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("MainWindow", "Tab 2", Q_NULLPTR));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", Q_NULLPTR));
         menuCalibration->setTitle(QApplication::translate("MainWindow", "Calibration", Q_NULLPTR));
