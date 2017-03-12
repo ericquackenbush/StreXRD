@@ -5,6 +5,7 @@
 #include <QFileSystemModel>
 #include <QGraphicsScene>
 #include <QMediaPlayer>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -20,6 +21,8 @@ public:
 
 private slots:
 
+	void resizeEvent(QResizeEvent * e);
+
     void on_actionExit_triggered();
 
     void on_actionAbout_triggered();
@@ -28,6 +31,10 @@ private slots:
 
 	void on_actionMetal_triggered();
 
+	void on_actionZoom_In_triggered();
+
+	void on_actionZoom_Out_triggered();
+
 private:
     Ui::MainWindow *ui;
 
@@ -35,6 +42,7 @@ private:
 	QPixmap image;
 	QImage  *imageObject;
 	QGraphicsScene *scene;
+	bool imageLoaded;
 
 	// play music file
 	QMediaPlayer* player;

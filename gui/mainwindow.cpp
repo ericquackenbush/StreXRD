@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QFileDialog>
 #include <QMediaPlayer>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -16,11 +17,23 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setSizes(hSplitSizes);
 
 	player = new QMediaPlayer(this);
+
+	// determines whether image is loaded for window resize
+	imageLoaded = false;
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *e)
+{
+	if (imageLoaded)
+	{
+		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+	}
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -48,7 +61,8 @@ void MainWindow::on_actionOpen_Image_triggered()
 	scene->addPixmap(image);
 	scene->setSceneRect(image.rect());
 	ui->graphicsView->setScene(scene);
-
+	ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+	imageLoaded = true;
 }
 
 void MainWindow::on_actionMetal_triggered()
@@ -60,4 +74,14 @@ void MainWindow::on_actionMetal_triggered()
 	player->play();
 	qDebug() << QDir::currentPath();
 	qDebug() << player->errorString();
+}
+
+void MainWindow::on_actionZoom_In_triggered()
+{
+	ui->graphicsView->scale(1.1, 1.1);
+}
+
+void MainWindow::on_actionZoom_Out_triggered()
+{
+	ui->graphicsView->scale(0.9, 0.9);
 }
