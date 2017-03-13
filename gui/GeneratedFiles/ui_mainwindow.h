@@ -54,6 +54,8 @@ public:
     QAction *actionZoom_In;
     QAction *actionZoom_Out;
     QAction *actionMetal;
+    QAction *actionAdjust_Contrast;
+    QAction *actionAdjust_Brightness;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QSplitter *splitter;
@@ -133,6 +135,16 @@ public:
         actionMetal->setObjectName(QStringLiteral("actionMetal"));
         actionMetal->setCheckable(false);
         actionMetal->setChecked(false);
+        actionAdjust_Contrast = new QAction(MainWindow);
+        actionAdjust_Contrast->setObjectName(QStringLiteral("actionAdjust_Contrast"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/icons/icons/contrast.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAdjust_Contrast->setIcon(icon3);
+        actionAdjust_Brightness = new QAction(MainWindow);
+        actionAdjust_Brightness->setObjectName(QStringLiteral("actionAdjust_Brightness"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/icons/icons/brightness.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAdjust_Brightness->setIcon(icon4);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -237,6 +249,8 @@ public:
         mainToolBar->addAction(actionOpen_Image);
         mainToolBar->addAction(actionZoom_In);
         mainToolBar->addAction(actionZoom_Out);
+        mainToolBar->addAction(actionAdjust_Brightness);
+        mainToolBar->addAction(actionAdjust_Contrast);
 
         retranslateUi(MainWindow);
 
@@ -277,6 +291,14 @@ public:
 #endif // QT_NO_TOOLTIP
         actionZoom_Out->setText(QApplication::translate("MainWindow", "Zoom Out", Q_NULLPTR));
         actionMetal->setText(QApplication::translate("MainWindow", "Metal Mode", Q_NULLPTR));
+        actionAdjust_Contrast->setText(QApplication::translate("MainWindow", "Adjust Contrast", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionAdjust_Contrast->setToolTip(QApplication::translate("MainWindow", "Adjust Contrast", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionAdjust_Brightness->setText(QApplication::translate("MainWindow", "Adjust Brightness", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionAdjust_Brightness->setToolTip(QApplication::translate("MainWindow", "Adjust Brightness", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Project Explorer", Q_NULLPTR));
         groupBox->setTitle(QApplication::translate("MainWindow", "View Options", Q_NULLPTR));

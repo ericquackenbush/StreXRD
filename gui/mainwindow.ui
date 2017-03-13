@@ -163,6 +163,9 @@
    <addaction name="actionOpen_Image"/>
    <addaction name="actionZoom_In"/>
    <addaction name="actionZoom_Out"/>
+   <addaction name="actionAdjust_Brightness"/>
+   <addaction name="actionAdjust_Contrast"/>
+   <addaction name="actionWeak_Peaks"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionCreate_new_data_set">
@@ -297,6 +300,42 @@
    </property>
    <property name="text">
     <string>Metal Mode</string>
+   </property>
+  </action>
+  <action name="actionAdjust_Contrast">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/contrast.png</normaloff>:/icons/icons/contrast.png</iconset>
+   </property>
+   <property name="text">
+    <string>Adjust Contrast</string>
+   </property>
+   <property name="toolTip">
+    <string>Adjust Contrast</string>
+   </property>
+  </action>
+  <action name="actionAdjust_Brightness">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/brightness.png</normaloff>:/icons/icons/brightness.png</iconset>
+   </property>
+   <property name="text">
+    <string>Adjust Brightness</string>
+   </property>
+   <property name="toolTip">
+    <string>Adjust Brightness</string>
+   </property>
+  </action>
+  <action name="actionWeak_Peaks">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/image.png</normaloff>:/icons/icons/image.png</iconset>
+   </property>
+   <property name="text">
+    <string>Weak Peaks</string>
+   </property>
+   <property name="toolTip">
+    <string>Weak Peaks</string>
    </property>
   </action>
  </widget>

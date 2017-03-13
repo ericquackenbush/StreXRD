@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QMediaPlayer>
 #include <QTimer>
+#include <opencv2/opencv.hpp>
 
 namespace Ui {
 class MainWindow;
@@ -35,12 +36,17 @@ private slots:
 
 	void on_actionZoom_Out_triggered();
 
+	void on_actionAdjust_Brightness_triggered();
+
+	void on_actionAdjust_Contrast_triggered();
+
+	void transform_image(int, int);
+
 private:
     Ui::MainWindow *ui;
 
 	// display an image with Graphics View
 	QPixmap image;
-	QImage  *imageObject;
 	QGraphicsScene *scene;
 	bool imageLoaded;
 
