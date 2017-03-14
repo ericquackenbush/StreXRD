@@ -3,8 +3,10 @@
         <file>icons/document-open-5.png</file>
         <file>icons/zoom-in-5.png</file>
         <file>icons/zoom-out-5.png</file>
-        <file>icons/brightness.png</file>
-        <file>icons/contrast.png</file>
         <file>icons/image.png</file>
+        <file>icons/lightbulb-add.png</file>
+        <file>icons/lightbulb-delete.png</file>
+        <file>icons/contrast-decrease.png</file>
+        <file>icons/contrast-increase.png</file>
     </qresource>
 </RCC>

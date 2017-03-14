@@ -54,8 +54,13 @@ public:
     QAction *actionZoom_In;
     QAction *actionZoom_Out;
     QAction *actionMetal;
-    QAction *actionAdjust_Contrast;
-    QAction *actionAdjust_Brightness;
+    QAction *actionOriginal_Image;
+    QAction *actionIncrease_Brightness;
+    QAction *actionDecrease_Brightness;
+    QAction *actionIncrease_Contrast;
+    QAction *actionDecrease_Contrast;
+    QAction *actionWeak_Peaks;
+    QAction *actionFully_Automatic;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QSplitter *splitter;
@@ -135,16 +140,35 @@ public:
         actionMetal->setObjectName(QStringLiteral("actionMetal"));
         actionMetal->setCheckable(false);
         actionMetal->setChecked(false);
-        actionAdjust_Contrast = new QAction(MainWindow);
-        actionAdjust_Contrast->setObjectName(QStringLiteral("actionAdjust_Contrast"));
+        actionOriginal_Image = new QAction(MainWindow);
+        actionOriginal_Image->setObjectName(QStringLiteral("actionOriginal_Image"));
         QIcon icon3;
-        icon3.addFile(QStringLiteral(":/icons/icons/contrast.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionAdjust_Contrast->setIcon(icon3);
-        actionAdjust_Brightness = new QAction(MainWindow);
-        actionAdjust_Brightness->setObjectName(QStringLiteral("actionAdjust_Brightness"));
+        icon3.addFile(QStringLiteral(":/icons/icons/image.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOriginal_Image->setIcon(icon3);
+        actionIncrease_Brightness = new QAction(MainWindow);
+        actionIncrease_Brightness->setObjectName(QStringLiteral("actionIncrease_Brightness"));
         QIcon icon4;
-        icon4.addFile(QStringLiteral(":/icons/icons/brightness.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionAdjust_Brightness->setIcon(icon4);
+        icon4.addFile(QStringLiteral(":/icons/icons/lightbulb-add.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionIncrease_Brightness->setIcon(icon4);
+        actionDecrease_Brightness = new QAction(MainWindow);
+        actionDecrease_Brightness->setObjectName(QStringLiteral("actionDecrease_Brightness"));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/icons/icons/lightbulb-delete.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionDecrease_Brightness->setIcon(icon5);
+        actionIncrease_Contrast = new QAction(MainWindow);
+        actionIncrease_Contrast->setObjectName(QStringLiteral("actionIncrease_Contrast"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/icons/icons/contrast-increase.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionIncrease_Contrast->setIcon(icon6);
+        actionDecrease_Contrast = new QAction(MainWindow);
+        actionDecrease_Contrast->setObjectName(QStringLiteral("actionDecrease_Contrast"));
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/icons/icons/contrast-decrease.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionDecrease_Contrast->setIcon(icon7);
+        actionWeak_Peaks = new QAction(MainWindow);
+        actionWeak_Peaks->setObjectName(QStringLiteral("actionWeak_Peaks"));
+        actionFully_Automatic = new QAction(MainWindow);
+        actionFully_Automatic->setObjectName(QStringLiteral("actionFully_Automatic"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayout = new QHBoxLayout(centralWidget);
@@ -247,10 +271,19 @@ public:
         menuHelp->addSeparator();
         menuHelp->addAction(actionAbout);
         mainToolBar->addAction(actionOpen_Image);
+        mainToolBar->addAction(actionOriginal_Image);
+        mainToolBar->addSeparator();
         mainToolBar->addAction(actionZoom_In);
         mainToolBar->addAction(actionZoom_Out);
-        mainToolBar->addAction(actionAdjust_Brightness);
-        mainToolBar->addAction(actionAdjust_Contrast);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionDecrease_Brightness);
+        mainToolBar->addAction(actionIncrease_Brightness);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionDecrease_Contrast);
+        mainToolBar->addAction(actionIncrease_Contrast);
+        mainToolBar->addSeparator();
+        mainToolBar->addAction(actionWeak_Peaks);
+        mainToolBar->addAction(actionFully_Automatic);
 
         retranslateUi(MainWindow);
 
@@ -291,13 +324,33 @@ public:
 #endif // QT_NO_TOOLTIP
         actionZoom_Out->setText(QApplication::translate("MainWindow", "Zoom Out", Q_NULLPTR));
         actionMetal->setText(QApplication::translate("MainWindow", "Metal Mode", Q_NULLPTR));
-        actionAdjust_Contrast->setText(QApplication::translate("MainWindow", "Adjust Contrast", Q_NULLPTR));
+        actionOriginal_Image->setText(QApplication::translate("MainWindow", "Original Image", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        actionAdjust_Contrast->setToolTip(QApplication::translate("MainWindow", "Adjust Contrast", Q_NULLPTR));
+        actionOriginal_Image->setToolTip(QApplication::translate("MainWindow", "Go back to original image", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
-        actionAdjust_Brightness->setText(QApplication::translate("MainWindow", "Adjust Brightness", Q_NULLPTR));
+        actionIncrease_Brightness->setText(QApplication::translate("MainWindow", "Increase Brightness", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
-        actionAdjust_Brightness->setToolTip(QApplication::translate("MainWindow", "Adjust Brightness", Q_NULLPTR));
+        actionIncrease_Brightness->setToolTip(QApplication::translate("MainWindow", "Increase Brightness", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionDecrease_Brightness->setText(QApplication::translate("MainWindow", "Decrease Brightness", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionDecrease_Brightness->setToolTip(QApplication::translate("MainWindow", "Decrease Brightness", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionIncrease_Contrast->setText(QApplication::translate("MainWindow", "Increase Contrast", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionIncrease_Contrast->setToolTip(QApplication::translate("MainWindow", "Increase Contrast", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionDecrease_Contrast->setText(QApplication::translate("MainWindow", "Decrease Contrast", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionDecrease_Contrast->setToolTip(QApplication::translate("MainWindow", "Decrease Contrast", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionWeak_Peaks->setText(QApplication::translate("MainWindow", "Weak Peaks", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionWeak_Peaks->setToolTip(QApplication::translate("MainWindow", "Weak Peaks", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        actionFully_Automatic->setText(QApplication::translate("MainWindow", "Fully Automatic", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        actionFully_Automatic->setToolTip(QApplication::translate("MainWindow", "Fully Automatic", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         QTreeWidgetItem *___qtreewidgetitem = treeWidget->headerItem();
         ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Project Explorer", Q_NULLPTR));

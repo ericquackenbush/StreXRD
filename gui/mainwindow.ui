@@ -161,11 +161,19 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen_Image"/>
+   <addaction name="actionOriginal_Image"/>
+   <addaction name="separator"/>
    <addaction name="actionZoom_In"/>
    <addaction name="actionZoom_Out"/>
-   <addaction name="actionAdjust_Brightness"/>
-   <addaction name="actionAdjust_Contrast"/>
+   <addaction name="separator"/>
+   <addaction name="actionDecrease_Brightness"/>
+   <addaction name="actionIncrease_Brightness"/>
+   <addaction name="separator"/>
+   <addaction name="actionDecrease_Contrast"/>
+   <addaction name="actionIncrease_Contrast"/>
+   <addaction name="separator"/>
    <addaction name="actionWeak_Peaks"/>
+   <addaction name="actionFully_Automatic"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionCreate_new_data_set">
@@ -302,40 +310,80 @@
     <string>Metal Mode</string>
    </property>
   </action>
-  <action name="actionAdjust_Contrast">
-   <property name="icon">
-    <iconset resource="Resource.qrc">
-     <normaloff>:/icons/icons/contrast.png</normaloff>:/icons/icons/contrast.png</iconset>
-   </property>
-   <property name="text">
-    <string>Adjust Contrast</string>
-   </property>
-   <property name="toolTip">
-    <string>Adjust Contrast</string>
-   </property>
-  </action>
-  <action name="actionAdjust_Brightness">
-   <property name="icon">
-    <iconset resource="Resource.qrc">
-     <normaloff>:/icons/icons/brightness.png</normaloff>:/icons/icons/brightness.png</iconset>
-   </property>
-   <property name="text">
-    <string>Adjust Brightness</string>
-   </property>
-   <property name="toolTip">
-    <string>Adjust Brightness</string>
-   </property>
-  </action>
-  <action name="actionWeak_Peaks">
+  <action name="actionOriginal_Image">
    <property name="icon">
     <iconset resource="Resource.qrc">
      <normaloff>:/icons/icons/image.png</normaloff>:/icons/icons/image.png</iconset>
    </property>
    <property name="text">
+    <string>Original Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Go back to original image</string>
+   </property>
+  </action>
+  <action name="actionIncrease_Brightness">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/lightbulb-add.png</normaloff>:/icons/icons/lightbulb-add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Increase Brightness</string>
+   </property>
+   <property name="toolTip">
+    <string>Increase Brightness</string>
+   </property>
+  </action>
+  <action name="actionDecrease_Brightness">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/lightbulb-delete.png</normaloff>:/icons/icons/lightbulb-delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Decrease Brightness</string>
+   </property>
+   <property name="toolTip">
+    <string>Decrease Brightness</string>
+   </property>
+  </action>
+  <action name="actionIncrease_Contrast">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/contrast-increase.png</normaloff>:/icons/icons/contrast-increase.png</iconset>
+   </property>
+   <property name="text">
+    <string>Increase Contrast</string>
+   </property>
+   <property name="toolTip">
+    <string>Increase Contrast</string>
+   </property>
+  </action>
+  <action name="actionDecrease_Contrast">
+   <property name="icon">
+    <iconset resource="Resource.qrc">
+     <normaloff>:/icons/icons/contrast-decrease.png</normaloff>:/icons/icons/contrast-decrease.png</iconset>
+   </property>
+   <property name="text">
+    <string>Decrease Contrast</string>
+   </property>
+   <property name="toolTip">
+    <string>Decrease Contrast</string>
+   </property>
+  </action>
+  <action name="actionWeak_Peaks">
+   <property name="text">
     <string>Weak Peaks</string>
    </property>
    <property name="toolTip">
     <string>Weak Peaks</string>
+   </property>
+  </action>
+  <action name="actionFully_Automatic">
+   <property name="text">
+    <string>Fully Automatic</string>
+   </property>
+   <property name="toolTip">
+    <string>Fully Automatic</string>
    </property>
   </action>
  </widget>

@@ -36,17 +36,30 @@ private slots:
 
 	void on_actionZoom_Out_triggered();
 
-	void on_actionAdjust_Brightness_triggered();
+	void on_actionIncrease_Brightness_triggered();
 
-	void on_actionAdjust_Contrast_triggered();
+	void on_actionDecrease_Brightness_triggered();
 
-	void transform_image(int, int);
+	void on_actionIncrease_Contrast_triggered();
+
+	void on_actionDecrease_Contrast_triggered();
+
+	void adjust_brightness(int);
+
+	void adjust_contrast(double);
+
+	void on_actionOriginal_Image_triggered();
+
+	void on_actionWeak_Peaks_triggered();
+
+	void on_actionFully_Automatic_triggered();
 
 private:
     Ui::MainWindow *ui;
 
 	// display an image with Graphics View
 	QPixmap image;
+	QImage imageObject;
 	QGraphicsScene *scene;
 	bool imageLoaded;
 
