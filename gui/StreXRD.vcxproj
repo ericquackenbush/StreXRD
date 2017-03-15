@@ -150,9 +150,10 @@
     <ClCompile Include="GeneratedFiles\Release\moc_mainwindow.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="image.cpp" />
+    <ClCompile Include="image_object.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
+    <ClCompile Include="read_mar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -199,7 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_mainwindow.h" />
-    <ClInclude Include="image.h" />
+    <ClInclude Include="image_object.h" />
+    <ClInclude Include="read_mar.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Resource.qrc">

@@ -67,7 +67,10 @@
     <ClCompile Include="GeneratedFiles\qrc_Resource.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="image.cpp">
+    <ClCompile Include="image_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="read_mar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -96,7 +99,10 @@
     <ClInclude Include="GeneratedFiles\ui_mainwindow.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
+    <ClInclude Include="image_object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="read_mar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

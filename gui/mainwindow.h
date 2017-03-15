@@ -7,6 +7,7 @@
 #include <QMediaPlayer>
 #include <QTimer>
 #include <opencv2/opencv.hpp>
+#include <image_object.h>
 
 namespace Ui {
 class MainWindow;
@@ -44,10 +45,6 @@ private slots:
 
 	void on_actionDecrease_Contrast_triggered();
 
-	void adjust_brightness(int);
-
-	void adjust_contrast(double);
-
 	void on_actionOriginal_Image_triggered();
 
 	void on_actionWeak_Peaks_triggered();
@@ -66,6 +63,7 @@ private:
 	// play music file
 	QMediaPlayer* player;
 
+	ImageObject new_image;
 };
 
 #endif // MAINWINDOW_H
