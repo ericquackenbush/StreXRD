@@ -56,7 +56,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::information(this, "About StreXRD", "A program analyzing stress-strain in powder diffraction images.");
+    QMessageBox::information(this, "About StreXRD", "A program analyzing for stress-strain in powder diffraction images.");
 }
 
 void MainWindow::on_actionOpen_Image_triggered()
