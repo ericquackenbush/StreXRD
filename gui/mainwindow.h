@@ -21,6 +21,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+	void update_image(cv::Mat img);
+
 private slots:
 
 	void resizeEvent(QResizeEvent * e);

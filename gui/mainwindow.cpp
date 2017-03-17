@@ -72,18 +72,8 @@ void MainWindow::on_actionOpen_Image_triggered()
 
 	new_image.load_file(cv_filename);
 	cv::Mat img = new_image.get_input_image();
-
-	// convert cv::Mat to QImage
-	QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-	// display the image
-	image = QPixmap::fromImage(imageObject);
-
 	scene = new QGraphicsScene(this);
-	scene->addPixmap(image);
-	scene->setSceneRect(image.rect());
-	ui->graphicsView->setScene(scene);
-	ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+	this->update_image(img);
 	imageLoaded = true;
 }
 
@@ -117,20 +107,8 @@ void MainWindow::on_actionIncrease_Brightness_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_brightness(10);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -139,20 +117,8 @@ void MainWindow::on_actionDecrease_Brightness_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_brightness(-10);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -162,20 +128,8 @@ void MainWindow::on_actionIncrease_Contrast_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_contrast(1.1);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -184,20 +138,8 @@ void MainWindow::on_actionDecrease_Contrast_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_contrast(0.9);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -208,18 +150,8 @@ void MainWindow::on_actionOriginal_Image_triggered()
 	if (imageLoaded)
 	{
 		cv::Mat img = new_image.get_input_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(1.0, 1.0);
+		currentScale = 1.0;
+		this->update_image(img);
 	}
 }
 
@@ -230,20 +162,9 @@ void MainWindow::on_actionWeak_Peaks_triggered()
 		if (filename.endsWith(".mar3450"))
 		{
 			new_image.weak_peaks();
-
 			cv::Mat img = new_image.get_output_image();
-
-			// convert cv::Mat to QImage
-			QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-			// display the new image
-			image = QPixmap::fromImage(imageObject);
-			scene->clear();
-			scene->addPixmap(image);
-			scene->setSceneRect(image.rect());
-			ui->graphicsView->setScene(scene);
-			ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-			ui->graphicsView->scale(1.0, 1.0);
+			currentScale = 1.0;
+			this->update_image(img);
 		}
 	}
 }
@@ -253,19 +174,23 @@ void MainWindow::on_actionFully_Automatic_triggered()
 	if (imageLoaded)
 	{
 		new_image.fully_automatic();
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(1.0, 1.0);
+		currentScale = 1.0;
+		this->update_image(img);
 	}
+}
+
+void MainWindow::update_image(cv::Mat img)
+{
+	// convert cv::Mat to QImage
+	QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
+
+	// display the new image
+	image = QPixmap::fromImage(imageObject);
+	scene->clear();
+	scene->addPixmap(image);
+	scene->setSceneRect(image.rect());
+	ui->graphicsView->setScene(scene);
+	ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+	ui->graphicsView->scale(currentScale, currentScale);
 }
