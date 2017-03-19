@@ -6,6 +6,7 @@
 #include <QGraphicsScene>
 #include <QMediaPlayer>
 #include <QTimer>
+#include <QTreeWidget>
 #include <opencv2/opencv.hpp>
 #include <image_object.h>
 
@@ -21,7 +22,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-	void update_image(cv::Mat img);
+protected:
 
 private slots:
 
@@ -53,6 +54,10 @@ private slots:
 
 	void on_actionFully_Automatic_triggered();
 
+	void on_actionOpen_existing_project_triggered();
+
+	void change_image(QTreeWidgetItem*, int);
+
 private:
     Ui::MainWindow *ui;
 
@@ -66,6 +71,11 @@ private:
 	QMediaPlayer* player;
 
 	ImageObject new_image;
+
+	QTreeWidgetItem *itm;
+
+	QHash<QString, QString> file_names_locations;
+	void update_image(cv::Mat img);
 };
 
 #endif // MAINWINDOW_H

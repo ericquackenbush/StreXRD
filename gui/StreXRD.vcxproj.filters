@@ -73,6 +73,9 @@
     <ClCompile Include="read_mar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xml_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="mainwindow.h">
@@ -103,6 +106,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="read_mar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="xml_handler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

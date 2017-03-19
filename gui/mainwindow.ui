@@ -111,10 +111,9 @@
      <string>File</string>
     </property>
     <addaction name="actionCreate_new_data_set"/>
-    <addaction name="actionOpen_existing_dataset"/>
+    <addaction name="actionOpen_existing_project"/>
     <addaction name="actionAdd_images_to_existing_project"/>
     <addaction name="actionPreferences"/>
-    <addaction name="actionMetal"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -145,6 +144,7 @@
      <string>Help</string>
     </property>
     <addaction name="actionDocumentation"/>
+    <addaction name="actionMetal"/>
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
    </widget>
@@ -181,7 +181,7 @@
     <string>Create new project</string>
    </property>
   </action>
-  <action name="actionOpen_existing_dataset">
+  <action name="actionOpen_existing_project">
    <property name="text">
     <string>Open existing project</string>
    </property>

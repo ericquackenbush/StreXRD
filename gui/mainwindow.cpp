@@ -10,13 +10,18 @@
 #include <QMediaPlayer>
 #include <QTimer>
 #include <QFile>
+#include <QHash>
+#include <QTreeView>
+#include <QtConcurrent>
 #include <opencv2/opencv.hpp>
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include <image_object.h>
+#include <xml_handler.h>
 
 double currentScale;
 QString filename;
+QString xml_filename;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,6 +38,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	// determines whether image is loaded for window resize
 	imageLoaded = false;
+
+	// set up tree widget for project explorer
+	QTreeWidget *treeWidget = new QTreeWidget();
+	treeWidget->setColumnCount(1);
+
+	itm = new QTreeWidgetItem(ui->treeWidget);
+	connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(change_image(QTreeWidgetItem*, int)));
 
 }
 
@@ -143,8 +155,6 @@ void MainWindow::on_actionDecrease_Contrast_triggered()
 	}
 }
 
-
-
 void MainWindow::on_actionOriginal_Image_triggered()
 {
 	if (imageLoaded)
@@ -193,4 +203,51 @@ void MainWindow::update_image(cv::Mat img)
 	ui->graphicsView->setScene(scene);
 	ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 	ui->graphicsView->scale(currentScale, currentScale);
+}
+
+void MainWindow::on_actionOpen_existing_project_triggered()
+{
+	xml_filename = QFileDialog::getOpenFileName(this, tr("Open StreXRD Project"), "C:/", tr("XML files (*.xml)"));
+
+	XMLHandler project_file(xml_filename);
+
+	QString project_name = project_file.get_project_name();
+	QList<int> file_ID = project_file.get_file_ID();
+	QList<QString> file_names = project_file.get_file_names();
+	QList<QString> file_locations = project_file.get_file_locations();	
+
+	itm->setText(0, project_name);
+
+	QList<QTreeWidgetItem *> items;
+	for (int i = 0; i < file_ID.size(); ++i)
+		items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(file_names[i])));
+	
+	itm->addChildren(items);
+
+	ui->treeWidget->expandAll();
+}
+
+void MainWindow::change_image(QTreeWidgetItem *itm, int column)
+{
+	QString item_name = itm->text(column);
+
+	XMLHandler project_file(xml_filename);
+	QHash<QString, QString> file_names_locations = project_file.get_hash();
+
+	filename = file_names_locations[item_name];
+
+	// set initial scale value
+	currentScale = 1.0;
+
+	// this only works on Windows!
+	std::string cv_filename = filename.toLocal8Bit().constData();
+
+	new_image.load_file(cv_filename);
+	cv::Mat img = new_image.get_input_image();
+	if (!imageLoaded)
+	{
+		scene = new QGraphicsScene(this);
+		imageLoaded = true;
+	}
+	this->update_image(img);
 }

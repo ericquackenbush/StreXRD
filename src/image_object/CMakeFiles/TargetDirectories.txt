@@ -1,0 +1,3 @@
+/home/eric/StreXRD/src/CMakeFiles/edit_cache.dir
+/home/eric/StreXRD/src/CMakeFiles/rebuild_cache.dir
+/home/eric/StreXRD/src/CMakeFiles/image_object.dir

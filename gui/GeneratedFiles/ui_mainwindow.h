@@ -33,7 +33,7 @@ class Ui_MainWindow
 {
 public:
     QAction *actionCreate_new_data_set;
-    QAction *actionOpen_existing_dataset;
+    QAction *actionOpen_existing_project;
     QAction *actionPreferences;
     QAction *actionExit;
     QAction *actionEnter_calibration_file;
@@ -87,8 +87,8 @@ public:
         MainWindow->resize(809, 496);
         actionCreate_new_data_set = new QAction(MainWindow);
         actionCreate_new_data_set->setObjectName(QStringLiteral("actionCreate_new_data_set"));
-        actionOpen_existing_dataset = new QAction(MainWindow);
-        actionOpen_existing_dataset->setObjectName(QStringLiteral("actionOpen_existing_dataset"));
+        actionOpen_existing_project = new QAction(MainWindow);
+        actionOpen_existing_project->setObjectName(QStringLiteral("actionOpen_existing_project"));
         actionPreferences = new QAction(MainWindow);
         actionPreferences->setObjectName(QStringLiteral("actionPreferences"));
         actionExit = new QAction(MainWindow);
@@ -249,10 +249,9 @@ public:
         menuBar->addAction(menuAnalysis->menuAction());
         menuBar->addAction(menuHelp->menuAction());
         menuFile->addAction(actionCreate_new_data_set);
-        menuFile->addAction(actionOpen_existing_dataset);
+        menuFile->addAction(actionOpen_existing_project);
         menuFile->addAction(actionAdd_images_to_existing_project);
         menuFile->addAction(actionPreferences);
-        menuFile->addAction(actionMetal);
         menuFile->addSeparator();
         menuFile->addAction(actionExit);
         menuCalibration->addAction(actionEnter_calibration_file);
@@ -268,6 +267,7 @@ public:
         menuAnalysis->addSeparator();
         menuAnalysis->addAction(actionMulti_Analysis);
         menuHelp->addAction(actionDocumentation);
+        menuHelp->addAction(actionMetal);
         menuHelp->addSeparator();
         menuHelp->addAction(actionAbout);
         mainToolBar->addAction(actionOpen_Image);
@@ -297,7 +297,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "StreXRD", Q_NULLPTR));
         actionCreate_new_data_set->setText(QApplication::translate("MainWindow", "Create new project", Q_NULLPTR));
-        actionOpen_existing_dataset->setText(QApplication::translate("MainWindow", "Open existing project", Q_NULLPTR));
+        actionOpen_existing_project->setText(QApplication::translate("MainWindow", "Open existing project", Q_NULLPTR));
         actionPreferences->setText(QApplication::translate("MainWindow", "Preferences", Q_NULLPTR));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", Q_NULLPTR));
         actionEnter_calibration_file->setText(QApplication::translate("MainWindow", "Open calibration file", Q_NULLPTR));
