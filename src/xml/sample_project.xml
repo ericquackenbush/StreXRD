@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <StreXRD_Project>
 	<Name>My Project</Name>
-	<Directory>C:\Users\eric\Documents\StreXRD Projects</Directory>
+    <Directory>/home/eric/Documents/StreXRD Projects</Directory>
 	<Calibration>
 		<Calibration_Data></Calibration_Data>
 		<Standard_File></Standard_File>
@@ -10,27 +10,27 @@
 	<Files>
 		<File ID="0">
 			<Name>AL203_001</Name>
-			<Location>C:/Users/eric/Source/Repos/StreXRD/gui/data/Al2O3_001.mar3450</Location>
+            <Location>/home/eric/Projects/StreXRD/data/Al2O3_001.mar3450</Location>
 		</File>
 		<File ID="1">
 			<Name>AL203_002</Name>
-			<Location>C:/Users/eric/Source/Repos/StreXRD/gui/data/Al2O3_002.mar3450</Location>
+			<Location>/home/eric/Projects/StreXRD/data/Al2O3_002.mar3450</Location>
 		</File>
 		<File ID="2">
 			<Name>AL203_003</Name>
-			<Location>C:/Users/eric/Source/Repos/StreXRD/gui/data/Al2O3_002.mar3450</Location>
+			<Location>/home/eric/Projects/StreXRD/data/Al2O3_003.mar3450</Location>
 		</File>
 		<File ID="3">
 			<Name>AL203_004</Name>
-			<Location>C:/Users/eric/Source/Repos/StreXRD/gui/data/Al2O3_004.mar3450</Location>
+			<Location>/home/eric/Projects/StreXRD/data/Al2O3_004.mar3450</Location>
 		</File>
 		<File ID="4">
 			<Name>AL203_005</Name>
-			<Location>C:/Users/eric/Source/Repos/StreXRD/gui/data/Al2O3_005.mar3450</Location>
+            <Location>/home/eric/Projects/StreXRD/data/Al2O3_005.mar3450</Location>
 		</File>
 		<File ID="5">
 			<Name>AL203_006</Name>
-			<Location>C:/Users/eric/Source/Repos/StreXRD/gui/data/Al2O3_006.mar3450</Location>
+			<Location>/home/eric/Projects/StreXRD/data/Al2O3_006.mar3450</Location>
 		</File>
 	</Files>
 </StreXRD_Project>

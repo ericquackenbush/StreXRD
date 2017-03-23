@@ -56,6 +56,8 @@ private slots:
 
 	void on_actionOpen_existing_project_triggered();
 
+    void on_actionAdd_images_to_project_triggered();
+
 	void change_image(QTreeWidgetItem*, int);
 
 private:

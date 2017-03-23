@@ -18,6 +18,7 @@
 #include <opencv/highgui.h>
 #include <image_object.h>
 #include <xml_handler.h>
+#include <addimages.h>
 
 double currentScale;
 QString filename;
@@ -57,6 +58,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 {
 	if (imageLoaded)
 	{
+        Q_UNUSED(e);
 		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 	}
 }
@@ -79,7 +81,7 @@ void MainWindow::on_actionOpen_Image_triggered()
 	// set initial scale value
 	currentScale = 1.0;
 
-	// this only works on Windows!
+	// apparently this also works on linux
 	std::string cv_filename = filename.toLocal8Bit().constData();
 
 	new_image.load_file(cv_filename);
@@ -250,4 +252,14 @@ void MainWindow::change_image(QTreeWidgetItem *itm, int column)
 		imageLoaded = true;
 	}
 	this->update_image(img);
+}
+
+void MainWindow::on_actionAdd_images_to_project_triggered()
+{
+	addImages mDialog;
+	mDialog.setModal(true);
+ 	if(mDialog.exec() == QDialog::Accepted)
+    {
+        qDebug() << "It worked!";
+    }
 }
