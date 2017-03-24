@@ -110,9 +110,9 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionCreate_new_data_set"/>
+    <addaction name="actionCreate_new_project"/>
     <addaction name="actionOpen_existing_project"/>
-    <addaction name="actionAdd_images_to_project"/>
+    <addaction name="actionAdd_images"/>
     <addaction name="actionPreferences"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
@@ -176,7 +176,7 @@
    <addaction name="actionFully_Automatic"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionCreate_new_data_set">
+  <action name="actionCreate_new_project">
    <property name="text">
     <string>Create new project</string>
    </property>
@@ -273,9 +273,9 @@
     <string>Open Image</string>
    </property>
   </action>
-  <action name="actionAdd_images_to_project">
+  <action name="actionAdd_images">
    <property name="text">
-    <string>Add images to project</string>
+    <string>Add images to current project</string>
    </property>
   </action>
   <action name="actionZoom_In">

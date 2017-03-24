@@ -19,6 +19,7 @@
 #include <image_object.h>
 #include <xml_handler.h>
 #include <addimages.h>
+#include <projectwizard.h>
 
 double currentScale;
 QString filename;
@@ -39,6 +40,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	// determines whether image is loaded for window resize
 	imageLoaded = false;
+
+	// determines whether a project is loaded
+	projectLoaded = false;
 
 	// set up tree widget for project explorer
 	QTreeWidget *treeWidget = new QTreeWidget();
@@ -212,11 +216,13 @@ void MainWindow::on_actionOpen_existing_project_triggered()
 	xml_filename = QFileDialog::getOpenFileName(this, tr("Open StreXRD Project"), "C:/", tr("XML files (*.xml)"));
 
 	XMLHandler project_file(xml_filename);
+	project_file.read_xml_file();
+
+	projectLoaded = true;
 
 	QString project_name = project_file.get_project_name();
 	QList<int> file_ID = project_file.get_file_ID();
 	QList<QString> file_names = project_file.get_file_names();
-	QList<QString> file_locations = project_file.get_file_locations();	
 
 	itm->setText(0, project_name);
 
@@ -234,6 +240,7 @@ void MainWindow::change_image(QTreeWidgetItem *itm, int column)
 	QString item_name = itm->text(column);
 
 	XMLHandler project_file(xml_filename);
+	project_file.read_xml_file();
 	QHash<QString, QString> file_names_locations = project_file.get_hash();
 
 	filename = file_names_locations[item_name];
@@ -241,7 +248,7 @@ void MainWindow::change_image(QTreeWidgetItem *itm, int column)
 	// set initial scale value
 	currentScale = 1.0;
 
-	// this only works on Windows!
+	// apprently this works on Linux as well
 	std::string cv_filename = filename.toLocal8Bit().constData();
 
 	new_image.load_file(cv_filename);
@@ -254,12 +261,38 @@ void MainWindow::change_image(QTreeWidgetItem *itm, int column)
 	this->update_image(img);
 }
 
-void MainWindow::on_actionAdd_images_to_project_triggered()
+void MainWindow::on_actionAdd_images_triggered()
 {
-	addImages mDialog;
-	mDialog.setModal(true);
- 	if(mDialog.exec() == QDialog::Accepted)
-    {
-        qDebug() << "It worked!";
-    }
+	if (projectLoaded)
+	{
+		addImages mDialog;
+		mDialog.set_xml_filename(xml_filename);
+		mDialog.show();
+
+		if (mDialog.exec() == QDialog::Accepted)
+		{
+			// update project explorer
+			XMLHandler project_file(xml_filename);
+			project_file.read_xml_file();
+
+			QString project_name = project_file.get_project_name();
+			QList<QString> file_names = project_file.get_file_names();
+
+			itm->setText(0, project_name);
+
+			QList<QTreeWidgetItem *> items;
+			for (int i = 0; i < file_names.size(); ++i)
+				items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(file_names[i])));
+			
+			itm->addChildren(items);
+
+			ui->treeWidget->expandAll();
+		}		
+	}
+}
+
+void MainWindow::on_actionCreate_new_project_triggered()
+{
+	ProjectWizard wizard;
+    	wizard.exec();
 }

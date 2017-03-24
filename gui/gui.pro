@@ -21,9 +21,9 @@ CONFIG += qt debug
 QT += core gui multimedia xml concurrent xml widgets
 
 # Input
-HEADERS += image_object.h mainwindow.h read_mar.h xml_handler.h addimages.h
+HEADERS += image_object.h mainwindow.h read_mar.h xml_handler.h addimages.h projectwizard.h
 FORMS += mainwindow.ui addimages.ui
-SOURCES += image_object.cpp main.cpp mainwindow.cpp read_mar.cpp xml_handler.cpp addimages.cpp
+SOURCES += image_object.cpp main.cpp mainwindow.cpp read_mar.cpp xml_handler.cpp addimages.cpp projectwizard.cpp
 RESOURCES += Resource.qrc
 
 CONFIG(debug, debug|release) {

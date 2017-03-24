@@ -3,7 +3,7 @@
 #include <QModelIndex>
 #include <QStringListModel>
 #include <QList>
-#include <QDialogButtonBox>
+#include <xml_handler.h>
 #include "addimages.h"
 #include "ui_addimages.h"
 
@@ -12,12 +12,6 @@ addImages::addImages(QWidget *parent) :
     ui(new Ui::addImages)
 {
     ui->setupUi(this);
-
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
-                                     | QDialogButtonBox::Cancel);
-
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
     QString sPath = "/";
     dirmodel = new QFileSystemModel(this);
@@ -74,4 +68,28 @@ void addImages::on_pushButton_4_clicked()
 	{
 		listmodel->removeRow((*iter).row(), (*iter).parent());
 	}
+}
+void addImages::on_pushButton_clicked()
+{
+    // OK
+    this->accept();
+
+    //write files_to_be_added to xml file
+    XMLHandler project_file(m_path);
+    project_file.read_xml_file();
+    project_file.add_files(files_to_be_added);
+
+    close();
+}
+
+void addImages::on_pushButton_2_clicked()
+{
+    // Cancel
+    this->reject();
+    close();
+}
+
+void addImages::set_xml_filename(const QString &path)
+{
+    m_path = path;
 }

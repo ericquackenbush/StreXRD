@@ -1,9 +1,10 @@
 #pragma once
 
-#include <QtXml>
+#include <QDomDocument>
 #include <QList>
 
 class XMLHandler {
+	QString filename;
 	QList<int> file_ID_list;
 	QList<QString> file_name_list;
 	QList<QString> file_location_list;
@@ -16,4 +17,7 @@ public:
 	QList<QString> get_file_locations();
 	QString get_project_name();
 	QHash<QString, QString> get_hash();
+	void add_files(QList<QString>);
+	void create_xml_file(QString, QString, QList<QString>);
+	void read_xml_file();
 };

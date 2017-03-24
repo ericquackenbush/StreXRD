@@ -28,11 +28,11 @@ private slots:
 
 	void resizeEvent(QResizeEvent * e);
 
-    void on_actionExit_triggered();
+      void on_actionExit_triggered();
 
-    void on_actionAbout_triggered();
+      void on_actionAbout_triggered();
 
-    void on_actionOpen_Image_triggered();
+      void on_actionOpen_Image_triggered();
 
 	void on_actionMetal_triggered();
 
@@ -56,9 +56,11 @@ private slots:
 
 	void on_actionOpen_existing_project_triggered();
 
-    void on_actionAdd_images_to_project_triggered();
+      void on_actionAdd_images_triggered();
 
 	void change_image(QTreeWidgetItem*, int);
+
+      void on_actionCreate_new_project_triggered();
 
 private:
     Ui::MainWindow *ui;
@@ -68,6 +70,7 @@ private:
 	QImage imageObject;
 	QGraphicsScene *scene;
 	bool imageLoaded;
+      bool projectLoaded;
 
 	// play music file
 	QMediaPlayer* player;
