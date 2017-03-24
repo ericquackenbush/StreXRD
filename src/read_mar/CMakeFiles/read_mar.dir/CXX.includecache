@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/eric/StreXRD/src/readmar/read_mar.cpp
+iostream
+-
+fstream
+-
+iterator
+-
+boost/algorithm/string.hpp
+-
+opencv2/imgproc/imgproc.hpp
+-
+opencv2/core/core.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+read_mar.h
+-
+
+include/read_mar.h
+vector
+-
+iostream
+-
+

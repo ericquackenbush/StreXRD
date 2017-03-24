@@ -55,7 +55,6 @@ void ImageObject::weak_peaks()
 	int height = inputImage.rows;
 	int numPts = 100;
 	int radius = 20;
-	int tol = 1;
 	double min, max;
 	int min_pos = 0;
 	int max_pos = 0;
@@ -84,9 +83,9 @@ void ImageObject::weak_peaks()
 		cv::Point center = cv::Point(x[i], y[i]);
 		cv::circle(mask, center, radius, cv::Scalar(255), -1);
 
-		for (unsigned int ix = 0; ix < height; ++ix)
+		for (int ix = 0; ix < height; ++ix)
 		{
-			for (unsigned int iy = 0; iy < width; ++iy)
+			for (int iy = 0; iy < width; ++iy)
 			{
 				if (mask.at<uchar>(iy, ix) > 0)
 				{
@@ -116,12 +115,12 @@ void ImageObject::weak_peaks()
 			max_pos = i;
 	}
 
-	min = avg[min_pos] - 3 * sd[min_pos];
-	max = avg[max_pos] + 5 * sd[max_pos];
+	min = (avg[min_pos] - 3 * sd[min_pos])/5.0;
+	max = (avg[max_pos] + 5 * sd[max_pos])/5.0;
 
-	qDebug() << "min: " << min << " " << "max: " << max << "\n";
+    qDebug() << "min: " << min << " " << "max: " << max;
 
-	cv::normalize(inputImage, outputImage, 0, 500, cv::NORM_MINMAX, CV_32SC1);
+	cv::normalize(inputImage, outputImage, min, max, cv::NORM_MINMAX, CV_32SC1);
 	outputImage.convertTo(outputImage, CV_8UC1);
 }
 

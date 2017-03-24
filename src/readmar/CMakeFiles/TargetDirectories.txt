@@ -1,3 +1,0 @@
-/home/eric/StreXRD/src/readmar/CMakeFiles/edit_cache.dir
-/home/eric/StreXRD/src/readmar/CMakeFiles/rebuild_cache.dir
-/home/eric/StreXRD/src/readmar/CMakeFiles/read_mar.dir

@@ -10,13 +10,19 @@
 #include <QMediaPlayer>
 #include <QTimer>
 #include <QFile>
+#include <QHash>
+#include <QTreeView>
+#include <QtConcurrent>
 #include <opencv2/opencv.hpp>
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 #include <image_object.h>
+#include <xml_handler.h>
+#include <addimages.h>
 
 double currentScale;
 QString filename;
+QString xml_filename;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,6 +40,13 @@ MainWindow::MainWindow(QWidget *parent) :
 	// determines whether image is loaded for window resize
 	imageLoaded = false;
 
+	// set up tree widget for project explorer
+	QTreeWidget *treeWidget = new QTreeWidget();
+	treeWidget->setColumnCount(1);
+
+	itm = new QTreeWidgetItem(ui->treeWidget);
+	connect(ui->treeWidget, SIGNAL(itemDoubleClicked(QTreeWidgetItem*, int)), this, SLOT(change_image(QTreeWidgetItem*, int)));
+
 }
 
 MainWindow::~MainWindow()
@@ -45,6 +58,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 {
 	if (imageLoaded)
 	{
+        Q_UNUSED(e);
 		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
 	}
 }
@@ -67,23 +81,13 @@ void MainWindow::on_actionOpen_Image_triggered()
 	// set initial scale value
 	currentScale = 1.0;
 
-	// this only works on Windows!
+	// apparently this also works on linux
 	std::string cv_filename = filename.toLocal8Bit().constData();
 
 	new_image.load_file(cv_filename);
 	cv::Mat img = new_image.get_input_image();
-
-	// convert cv::Mat to QImage
-	QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-	// display the image
-	image = QPixmap::fromImage(imageObject);
-
 	scene = new QGraphicsScene(this);
-	scene->addPixmap(image);
-	scene->setSceneRect(image.rect());
-	ui->graphicsView->setScene(scene);
-	ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+	this->update_image(img);
 	imageLoaded = true;
 }
 
@@ -117,20 +121,8 @@ void MainWindow::on_actionIncrease_Brightness_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_brightness(10);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -139,20 +131,8 @@ void MainWindow::on_actionDecrease_Brightness_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_brightness(-10);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -162,20 +142,8 @@ void MainWindow::on_actionIncrease_Contrast_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_contrast(1.1);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
 
@@ -184,42 +152,18 @@ void MainWindow::on_actionDecrease_Contrast_triggered()
 	if (imageLoaded)
 	{
 		new_image.adjust_contrast(0.9);
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(currentScale, currentScale);
+		this->update_image(img);
 	}
 }
-
-
 
 void MainWindow::on_actionOriginal_Image_triggered()
 {
 	if (imageLoaded)
 	{
 		cv::Mat img = new_image.get_input_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(1.0, 1.0);
+		currentScale = 1.0;
+		this->update_image(img);
 	}
 }
 
@@ -230,20 +174,9 @@ void MainWindow::on_actionWeak_Peaks_triggered()
 		if (filename.endsWith(".mar3450"))
 		{
 			new_image.weak_peaks();
-
 			cv::Mat img = new_image.get_output_image();
-
-			// convert cv::Mat to QImage
-			QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-			// display the new image
-			image = QPixmap::fromImage(imageObject);
-			scene->clear();
-			scene->addPixmap(image);
-			scene->setSceneRect(image.rect());
-			ui->graphicsView->setScene(scene);
-			ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-			ui->graphicsView->scale(1.0, 1.0);
+			currentScale = 1.0;
+			this->update_image(img);
 		}
 	}
 }
@@ -253,19 +186,80 @@ void MainWindow::on_actionFully_Automatic_triggered()
 	if (imageLoaded)
 	{
 		new_image.fully_automatic();
-
 		cv::Mat img = new_image.get_output_image();
-
-		// convert cv::Mat to QImage
-		QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
-
-		// display the new image
-		image = QPixmap::fromImage(imageObject);
-		scene->clear();
-		scene->addPixmap(image);
-		scene->setSceneRect(image.rect());
-		ui->graphicsView->setScene(scene);
-		ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
-		ui->graphicsView->scale(1.0, 1.0);
+		currentScale = 1.0;
+		this->update_image(img);
 	}
+}
+
+void MainWindow::update_image(cv::Mat img)
+{
+	// convert cv::Mat to QImage
+	QImage imageObject(img.data, img.cols, img.rows, static_cast<int>(img.step), QImage::Format_Grayscale8);
+
+	// display the new image
+	image = QPixmap::fromImage(imageObject);
+	scene->clear();
+	scene->addPixmap(image);
+	scene->setSceneRect(image.rect());
+	ui->graphicsView->setScene(scene);
+	ui->graphicsView->fitInView(scene->itemsBoundingRect(), Qt::KeepAspectRatio);
+	ui->graphicsView->scale(currentScale, currentScale);
+}
+
+void MainWindow::on_actionOpen_existing_project_triggered()
+{
+	xml_filename = QFileDialog::getOpenFileName(this, tr("Open StreXRD Project"), "C:/", tr("XML files (*.xml)"));
+
+	XMLHandler project_file(xml_filename);
+
+	QString project_name = project_file.get_project_name();
+	QList<int> file_ID = project_file.get_file_ID();
+	QList<QString> file_names = project_file.get_file_names();
+	QList<QString> file_locations = project_file.get_file_locations();	
+
+	itm->setText(0, project_name);
+
+	QList<QTreeWidgetItem *> items;
+	for (int i = 0; i < file_ID.size(); ++i)
+		items.append(new QTreeWidgetItem((QTreeWidget*)0, QStringList(file_names[i])));
+	
+	itm->addChildren(items);
+
+	ui->treeWidget->expandAll();
+}
+
+void MainWindow::change_image(QTreeWidgetItem *itm, int column)
+{
+	QString item_name = itm->text(column);
+
+	XMLHandler project_file(xml_filename);
+	QHash<QString, QString> file_names_locations = project_file.get_hash();
+
+	filename = file_names_locations[item_name];
+
+	// set initial scale value
+	currentScale = 1.0;
+
+	// this only works on Windows!
+	std::string cv_filename = filename.toLocal8Bit().constData();
+
+	new_image.load_file(cv_filename);
+	cv::Mat img = new_image.get_input_image();
+	if (!imageLoaded)
+	{
+		scene = new QGraphicsScene(this);
+		imageLoaded = true;
+	}
+	this->update_image(img);
+}
+
+void MainWindow::on_actionAdd_images_to_project_triggered()
+{
+	addImages mDialog;
+	mDialog.setModal(true);
+ 	if(mDialog.exec() == QDialog::Accepted)
+    {
+        qDebug() << "It worked!";
+    }
 }
