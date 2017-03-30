@@ -1,36 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <StreXRD_Project>
-	<Name>My Project</Name>
-    <Directory>/home/eric/Documents/StreXRD Projects</Directory>
-	<Calibration>
-		<Calibration_Data></Calibration_Data>
-		<Standard_File></Standard_File>
-		<Calibrant></Calibrant>
-	</Calibration>
-	<Files>
-		<File ID="0">
-			<Name>AL203_001</Name>
-            <Location>/home/eric/Projects/StreXRD/data/Al2O3_001.mar3450</Location>
-		</File>
-		<File ID="1">
-			<Name>AL203_002</Name>
-			<Location>/home/eric/Projects/StreXRD/data/Al2O3_002.mar3450</Location>
-		</File>
-		<File ID="2">
-			<Name>AL203_003</Name>
-			<Location>/home/eric/Projects/StreXRD/data/Al2O3_003.mar3450</Location>
-		</File>
-		<File ID="3">
-			<Name>AL203_004</Name>
-			<Location>/home/eric/Projects/StreXRD/data/Al2O3_004.mar3450</Location>
-		</File>
-		<File ID="4">
-			<Name>AL203_005</Name>
-            <Location>/home/eric/Projects/StreXRD/data/Al2O3_005.mar3450</Location>
-		</File>
-		<File ID="5">
-			<Name>AL203_006</Name>
-			<Location>/home/eric/Projects/StreXRD/data/Al2O3_006.mar3450</Location>
-		</File>
-	</Files>
+ <Name>My Project</Name>
+ <Directory>/home/eric/Documents/StreXRD Projects</Directory>
+ <Calibration>
+  <Calibration_Data/>
+  <Standard_File/>
+  <Calibrant/>
+ </Calibration>
+ <Files>
+  <File ID="0">
+   <Name>AL203_001</Name>
+   <Location>/home/eric/Projects/StreXRD/data/Al2O3_001.mar3450</Location>
+  </File>
+  <File ID="1">
+   <Name>AL203_002</Name>
+   <Location>/home/eric/Projects/StreXRD/data/Al2O3_002.mar3450</Location>
+  </File>
+  <File ID="2">
+   <Name>AL203_003</Name>
+   <Location>/home/eric/Projects/StreXRD/data/Al2O3_003.mar3450</Location>
+  </File>
+  <File ID="3">
+   <Name>AL203_004</Name>
+   <Location>/home/eric/Projects/StreXRD/data/Al2O3_004.mar3450</Location>
+  </File>
+  <File ID="4">
+   <Name>AL203_005</Name>
+   <Location>/home/eric/Projects/StreXRD/data/Al2O3_005.mar3450</Location>
+  </File>
+  <File ID="5">
+   <Name>AL203_006</Name>
+   <Location>/home/eric/Projects/StreXRD/data/Al2O3_006.mar3450</Location>
+  </File>
+  <File ID="6">
+   <Name>CeO2_042713_002.mar3450</Name>
+   <Location>/home/eric/Projects/StreXRD/MATLAB/CeO2_042713_002.mar3450</Location>
+  </File>
+  <File ID="7">
+   <Name>DIR_COLORS</Name>
+   <Location>/etc/DIR_COLORS</Location>
+  </File>
+  <File ID="8">
+   <Name>DIR_COLORS.lightbgcolor</Name>
+   <Location>/etc/DIR_COLORS.lightbgcolor</Location>
+  </File>
+  <File ID="9">
+   <Name>e2fsck.conf</Name>
+   <Location>/etc/e2fsck.conf</Location>
+  </File>
+  <File ID="10">
+   <Name>elinks.conf</Name>
+   <Location>/etc/elinks.conf</Location>
+  </File>
+  <File ID="11">
+   <Name>ethertypes</Name>
+   <Location>/etc/ethertypes</Location>
+  </File>
+  <File ID="12">
+   <Name>exports</Name>
+   <Location>/etc/exports</Location>
+  </File>
+  <File ID="13">
+   <Name>favicon.png</Name>
+   <Location>/etc/favicon.png</Location>
+  </File>
+  <File ID="14">
+   <Name>fedora-release</Name>
+   <Location>/etc/fedora-release</Location>
+  </File>
+  <File ID="15">
+   <Name>fprintd.conf</Name>
+   <Location>/etc/fprintd.conf</Location>
+  </File>
+  <File ID="16">
+   <Name>fstab</Name>
+   <Location>/etc/fstab</Location>
+  </File>
+  <File ID="17">
+   <Name>fuse.conf</Name>
+   <Location>/etc/fuse.conf</Location>
+  </File>
+ </Files>
 </StreXRD_Project>
